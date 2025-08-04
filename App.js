@@ -1,29 +1,15 @@
 //rendering the items using list is not a good approach as it print all the id , so will be a big problem for largetDataset
 //FlatList (it render the items currently in the view)
 //also it generates few advance components as ensure smooth operation
-import { StyleSheet, Text, View, ScrollView , StatusBar, SafeAreaView ,FlatList} from 'react-native';
+import { StyleSheet, Text, View, ScrollView , StatusBar, SafeAreaView ,FlatList , SectionList} from 'react-native';
 import pokemonList from './data.json'
+import groupedPokemonList from './grouped-data.json'
 
 export default function App() {
   return (
-    // <ScrollView style={styles.scrollView}>
-    //   <View style={styles.container}>
-    //   {
-    //     pokemonList.map((pokemon)=>{
-    //       return(
-            
-    //         <View id='{pokemon.id}' style = {styles.card}>
-    //           <Text>{pokemon.type}</Text>
-    //           <Text>{pokemon.name}</Text>
-    //         </View>
-    //       )
-    //     })
-    //   }
-    //   <StatusBar style="auto" />
-    // </View>
-    // </ScrollView>
+    
     <SafeAreaView>
-      <FlatList 
+      {/* <FlatList 
       data = {pokemonList}
       renderItem = {({item})=>{
         console.log(item.id);
@@ -45,7 +31,22 @@ export default function App() {
       ListEmptyComponent={<Text>No data found</Text>}
       ListHeaderComponent={<Text style = {styles.listHeader}>List of Pokemon</Text>}
       ListFooterComponent={<Text>PokemonList</Text>}
-    />
+    /> */}
+
+        <SectionList 
+        sections={groupedPokemonList}
+        keyExtractor={(item, index) => item + index}
+
+        renderItem={({ item }) => {return (
+          <View style={styles.card}>
+            <Text style={{ fontSize: 30 ,fontWeight:'bold'}}>{item}</Text>
+          </View>
+        )}}
+
+        renderSectionHeader={({ section: { type } }) => (
+          <Text style={styles.listHeader}>{type}</Text>
+        )}
+      />
     </SafeAreaView>
   );
 }
