@@ -12,7 +12,7 @@ export default function App() {
     <NavigationContainer>
         <stack.Navigator>
           <stack.Screen  name = "HOME" component={HomeScreen}/>
-          <stack.Screen  name = "About" component={AboutScreen}/>
+          <stack.Screen  name = "About" component={AboutScreen} initialParams={{name : "Guest"}}/>
         </stack.Navigator>
     </NavigationContainer>
   );

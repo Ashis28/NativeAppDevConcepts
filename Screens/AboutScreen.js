@@ -1,12 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
-
-export default function AboutScreen(){
-
+//all the screens component has this prop route which get the data from the stacked screen
+export default function AboutScreen({route,navigation}){
+    const {name} = route.params;
     return(
         <View style={styles.container}>
-            <Text>AboutScreen beta</Text>
+            <Text>AboutScreen beta {name}</Text>
+
+            <Button title = "Update the name" onPress={()=> {navigation.setParams({name:"CodeEvolution"})}} />
+
+            <Button
+                title="GO back to Home with data"
+                onPress={() => navigation.navigate("HOME", { results: `AboutScreen name is ${name}` })}
+            />
         </View>
+
+        
     );
 }
 
