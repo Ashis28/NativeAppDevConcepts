@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View , SafeAreaView , TextInput } from 'react-native';
+import { StyleSheet, Text, View , SafeAreaView , TextInput, Switch } from 'react-native';
 import { useState } from 'react';
 export default function App() {
 
   let [name,setName] = useState("");
+  let [mode,setMode] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -11,6 +12,11 @@ export default function App() {
       <Text>Hello mr : {name} </Text>
       
       <TextInput style = {[styles.input,styles.multiline]} placeholder='write a message' multiline></TextInput>
+
+      <View style = {styles.switchContainer}>
+          <Text style={{fontSize:40}}>Dark Mode</Text>
+          <Switch value={mode} onValueChange={() => setMode(!mode)} trackColor={{false:'767577',true:'Light-Blue'}} thumbColor="f4f3f4" />
+      </View>
     </SafeAreaView>
   );
 }
@@ -31,5 +37,13 @@ const styles = StyleSheet.create({
   multiline: {
     minHeight: 100,
     textAlignVertical:"top", 
+  },
+
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin:12,
+    padding:10,
   }
 });
