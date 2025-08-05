@@ -1,8 +1,15 @@
+import { useLayoutEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 //all the screens component has this prop route which get the data from the stacked screen
 export default function AboutScreen({route,navigation}){
     const {name} = route.params;
+
+    useLayoutEffect(()=>{
+        navigation.setOptions({
+            title:name,
+        })
+    },[navigation,name])
     return(
         <View style={styles.container}>
             <Text>AboutScreen beta {name}</Text>
