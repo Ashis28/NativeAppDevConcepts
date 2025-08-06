@@ -3,6 +3,7 @@ import CourseScreen from "./Screens/CourseScreen";
 import SettingsScreen from "./Screens/SettingsScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import { Ionicons } from '@expo/vector-icons';
+import Drawer, { AboutDrawer } from "./Drawer";
 const { createBottomTabNavigator } = require("@react-navigation/bottom-tabs");
 
 
@@ -24,12 +25,14 @@ export default function App(){
       >
           <Tab.Screen name="Course" component={CourseScreen}/>
           <Tab.Screen name="settings" component={SettingsScreen}/>
-          <Tab.Screen name="Profile" component={ProfileScreen}
+          <Tab.Screen name="Profile" component={ProfileScreen} 
           options={{
             tabBarLabel: "MyProfile",
             tabBarIcon: ({color}) => <Ionicons name="person" size={20} color={color}/>,
             tabBarBadge: 3
           }}/>
+
+          <Tab.Screen  name="Drawer" component={AboutDrawer}/>
       </Tab.Navigator>
     </NavigationContainer>
   )
